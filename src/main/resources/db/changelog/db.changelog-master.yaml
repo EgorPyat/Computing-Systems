@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: sets/cs_entity.yaml
+      relativeToChangelogFile: true
