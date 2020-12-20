@@ -18,11 +18,12 @@ public class CsEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
-    private CsEntity parent;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "cs_entity_hierarchy", joinColumns = @JoinColumn(name = "entity_id"), inverseJoinColumns = @JoinColumn(name = "parent_entity_id"))
+    private List<CsEntity> parents;
 
-    @OneToMany(mappedBy = "parent")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "cs_entity_hierarchy", joinColumns = @JoinColumn(name = "parent_entity_id"), inverseJoinColumns = @JoinColumn(name = "entity_id"))
     private List<CsEntity> descendants;
 
     protected CsEntity() {
@@ -46,14 +47,6 @@ public class CsEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public CsEntity getParent() {
-        return parent;
-    }
-
-    public void setParent(CsEntity parent) {
-        this.parent = parent;
     }
 
     public List<CsEntity> getDescendants() {

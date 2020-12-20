@@ -24,7 +24,7 @@ function App() {
         <ul key={Date.now()}>
           {rootEntities.map(entity => (
               <>
-                <li key={entity.id} onClick={() => handleEntityClick(entity)}>{entity.name}</li>
+                <li className="list-item" key={entity.id} onClick={() => handleEntityClick(entity)}>{entity.name}</li>
                 {renderHierarchy(entity.descendants)}
               </>
           ))}
@@ -34,18 +34,33 @@ function App() {
 
   return (
     <div className="wrapper">
-      <div className="header">Классификация вычислительных систем по</div>
+      <div className="header">Классификация вычислительных систем</div>
       <div className="article">
         <div>
-          <p>{content?.name}</p>
+          <h4>{content?.name}</h4>
           <p>{content?.description}</p>
+          <br/>
+          {content && content?.descendants && content?.descendants.length > 0 &&
+          <div>
+            <h5>Связанные термины:</h5>
+            <ul>
+              {content.descendants.map(d => <li className="list-item" onClick={() => handleEntityClick(d)} key={d.id}>{d.name}</li>)}
+            </ul>
+          </div>}
+          {/*{content && content?.descendants &&*/}
+          {/*<div>*/}
+          {/*  <h5>Головные термины:</h5>*/}
+          {/*  <ul>*/}
+          {/*    {content?.descendants.map(d => <li className="list-item" onClick={() => handleEntityClick(d)} key={d.id}>{d.name}</li>)}*/}
+          {/*  </ul>*/}
+          {/*</div>}*/}
         </div>
       </div>
       <div className="aside">
-        <label>
+        <div className="search">
           Поиск:
           <input type="text" name="name" onChange={handleInput}/>
-        </label>
+        </div>
         {renderHierarchy(data)}
       </div>
       <div className="footer">Пятаев Егор Евгеньевич, 19223. Вычислительные системы, 2020</div>

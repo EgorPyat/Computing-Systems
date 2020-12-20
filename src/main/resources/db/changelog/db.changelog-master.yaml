@@ -2,3 +2,6 @@ databaseChangeLog:
   - include:
       file: sets/cs_entity.yaml
       relativeToChangelogFile: true
+  - include:
+      file: sets/cs_entity_hierarchy.yaml
+      relativeToChangelogFile: true

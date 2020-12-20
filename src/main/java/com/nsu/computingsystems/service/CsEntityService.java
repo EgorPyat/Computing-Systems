@@ -21,6 +21,6 @@ public class CsEntityService {
 
     @Transactional
     public List<CsEntityDto> getCsEntityHierarchy() {
-        return csEntityMapper.convertHierarchy(csRepository.findAllByParentIdIsNull());
+        return csEntityMapper.convertHierarchy(csRepository.findAllByParentsIsNull());
     }
 }

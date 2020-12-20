@@ -1,0 +1,422 @@
+databaseChangeLog:
+  - changeSet:
+      id: create cs_entity table
+      author: epyataev
+      changes:
+        - createTable:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: cs_entity_hierarchy__cs_entity__fk
+                    references: cs_entity(id)
+              - column:
+                  name: parent_entity_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: cs_entity_hierarchy__cs_entity__parent__fk
+                    references: cs_entity(id)
+  - changeSet:
+      id: insert hierarchy
+      author: epyataev
+      changes:
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 5
+              - column:
+                  name: parent_entity_id
+                  value: 1
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 6
+              - column:
+                  name: parent_entity_id
+                  value: 1
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 7
+              - column:
+                  name: parent_entity_id
+                  value: 2
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 8
+              - column:
+                  name: parent_entity_id
+                  value: 2
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 9
+              - column:
+                  name: parent_entity_id
+                  value: 4
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 10
+              - column:
+                  name: parent_entity_id
+                  value: 4
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 11
+              - column:
+                  name: parent_entity_id
+                  value: 5
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 12
+              - column:
+                  name: parent_entity_id
+                  value: 6
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 13
+              - column:
+                  name: parent_entity_id
+                  value: 6
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 14
+              - column:
+                  name: parent_entity_id
+                  value: 6
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 15
+              - column:
+                  name: parent_entity_id
+                  value: 6
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 16
+              - column:
+                  name: parent_entity_id
+                  value: 6
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 17
+              - column:
+                  name: parent_entity_id
+                  value: 7
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 18
+              - column:
+                  name: parent_entity_id
+                  value: 7
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 19
+              - column:
+                  name: parent_entity_id
+                  value: 7
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 20
+              - column:
+                  name: parent_entity_id
+                  value: 8
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 21
+              - column:
+                  name: parent_entity_id
+                  value: 8
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 22
+              - column:
+                  name: parent_entity_id
+                  value: 9
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 23
+              - column:
+                  name: parent_entity_id
+                  value: 10
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 24
+              - column:
+                  name: parent_entity_id
+                  value: 10
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 25
+              - column:
+                  name: parent_entity_id
+                  value: 10
+        - insert:
+            tableName: cs_entity_hierarchy
+            columns:
+              - column:
+                  name: entity_id
+                  value: 26
+              - column:
+                  name: parent_entity_id
+                  value: 10
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:
+#        - insert:
+#            tableName: cs_entity_hierarchy
+#            columns:
+#              - column:
+#                  name: entity_id
+#                  value:
+#              - column:
+#                  name: parent_entity_id
+#                  value:

@@ -39,10 +39,10 @@ databaseChangeLog:
                   value: 1
               - column:
                   name: name
-                  value: Entity 1
+                  value: SISD
               - column:
                   name: description
-                  value: Description 1
+                  value: SISD (single instruction stream / single data stream) - одиночный поток команд и одиночный поток данных. К этому классу относятся, прежде всего, классические последовательные машины, или иначе, машины фон-неймановского типа, например, PDP-11 или VAX 11/780. В таких машинах есть только один поток команд, все команды обрабатываются последовательно друг за другом и каждая команда инициирует одну операцию с одним потоком данных. Не имеет значения тот факт, что для увеличения скорости обработки команд и скорости выполнения арифметических операций может применяться конвейерная обработка - как машина CDC 6600 со скалярными функциональными устройствами, так и CDC 7600 с конвейерными попадают в этот класс.
         - insert:
             tableName: cs_entity
             columns:
@@ -51,11 +51,512 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: name
-                  value: Entity 2
+                  value: SIMD
               - column:
                   name: description
-                  value: Description 2
+                  value: SIMD (single instruction stream / multiple data stream) - одиночный поток команд и множественный поток данных. В архитектурах подобного рода сохраняется один поток команд, включающий, в отличие от предыдущего класса, векторные команды. Это позволяет выполнять одну арифметическую операцию сразу над многими данными - элементами вектора. Способ выполнения векторных операций не оговаривается, поэтому обработка элементов вектора может производится либо процессорной матрицей, как в ILLIAC IV, либо с помощью конвейера, как, например, в машине CRAY-1.
+        - insert:
+            tableName: cs_entity
+            columns:
               - column:
-                  name: parent_id
-                  value: 1
-
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: MISD
+              - column:
+                  name: description
+                  value: MISD (multiple instruction stream / single data stream) - множественный поток команд и одиночный поток данных. Определение подразумевает наличие в архитектуре многих процессоров, обрабатывающих один и тот же поток данных. Однако ни Флинн, ни другие специалисты в области архитектуры компьютеров до сих пор не смогли представить убедительный пример реально существующей ВС, построенной на данном принципе. Ряд исследователей (например, Хендлер) относят конвейерные машины к данному классу, однако это не нашло окончательного признания в научном сообществе. Считается, что пока данный класс пуст.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: name
+                  value: MIMD
+              - column:
+                  name: description
+                  value: MIMD (multiple instruction stream / multiple data stream) - множественный поток команд и множественный поток данных. Этот класс предполагает, что в ВС есть несколько устройств обработки команд, объединенных в единый комплекс и работающих каждое со своим потоком команд и данных.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: name
+                  value: С единственным функциональным устройством
+              - column:
+                  name: description
+                  value: Дополнение Ванга и Бриггса к классификации Флинна к классу SISD. Пример - PDP-11.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: name
+                  value: Имеющие несколько функциональных устройств
+              - column:
+                  name: description
+                  value: Дополнение Ванга и Бриггса к классификации Флинна к классу SISD. Пример - CDC 6600, CRAY-1, FPS AP-120B, CDC Cyber 205, FACOM VP-200.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 7
+              - column:
+                  name: name
+                  value: C пословно-последовательной обработкой информации
+              - column:
+                  name: description
+                  value: Дополнение Ванга и Бриггса к классификации Флинна к классу SIMD. Примеры - ILLIAC IV, PEPE, BSP.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 8
+              - column:
+                  name: name
+                  value: С разрядно-последовательной обработкой
+              - column:
+                  name: description
+                  value: Дополнение Ванга и Бриггса к классификации Флинна к классу SIMD. Примеры - STARAN, ICL DAP.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 9
+              - column:
+                  name: name
+                  value: Со слабой связью между процессорами
+              - column:
+                  name: description
+                  value: Дополнение Ванга и Бриггса к классификации Флинна к классу MIMD, к которым они относят все системы с распределенной памятью, например, Cosmic Cube.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 10
+              - column:
+                  name: name
+                  value: С сильной связью между процессорами
+              - column:
+                  name: description
+                  value: Дополнение Ванга и Бриггса к классификации Флинна к классу MIMD, куда попадают такие компьютеры, как C.mmp, BBN Butterfly, CRAY Y-MP, Denelcor HEP.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 11
+              - column:
+                  name: name
+                  value: PDP-11
+              - column:
+                  name: description
+                  value: PDP-11 — серия 16-разрядных мини-ЭВМ компании DEC, серийно производившихся и продававшихся в 1970—80-х годах. Развитие серии PDP-8 из общей линейки компьютеров PDP. В PDP-11 появилось несколько уникальных технологических инноваций, эта серия была проще в программировании, чем её предшественники. Но, несмотря на её всеобщее признание со стороны программистов, PDP-11 со временем была вытеснена персональными компьютерами, включая IBM PC и Apple II.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 12
+              - column:
+                  name: name
+                  value: CDC 6600
+              - column:
+                  name: description
+                  value: CDC 6600 — первый в мире суперкомпьютер, разработанный и созданный американской компанией Control Data Corporation в 1963 году под руководством талантливого инженера-электронщика Сеймура Крэя, названного впоследствии «отцом суперкомпьютеров».
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 13
+              - column:
+                  name: name
+                  value: FPS AP-120B
+              - column:
+                  name: description
+                  value: The FPS AP-120B was a 38-bit, pipeline-oriented array processor manufactured by Floating Point Systems. It was designed to be attached to a host computer such as a DEC PDP-11 as a fast number-cruncher. Data transfer was accomplished using direct memory access. Processor cycle time was 167 nanoseconds, giving a speed of 6 MHz. Since it could present two floating point results per cycle, one from the adder and the other from the multiplier, a capacity of 12 Megaflops was claimed for the processor.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 14
+              - column:
+                  name: name
+                  value: CDC Cyber 205
+              - column:
+                  name: description
+                  value: The CDC Cyber 205 range of mainframe-class supercomputers were the primary products of Control Data Corporation (CDC) during the 1970s and 1980s. In their day, they were the computer architecture of choice for scientific and mathematically intensive computing. They were used for modeling fluid flow, material science stress analysis, electrochemical machining analysis, probabilistic analysis, energy and academic computing, radiation shielding modeling, and other applications. The lineup also included the Cyber 18 and Cyber 1000 minicomputers. Like their predecessor, the CDC 6600, they were unusual in using the ones' complement binary representation.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 15
+              - column:
+                  name: name
+                  value: FACOM VP-200
+              - column:
+                  name: description
+                  value: A series of supercomputers from Fujitsu. The vector processor FACOM VP-100 and FACOM VP-200 were announced as the company's first supercomputers in July 1982. These were developed, by exploiting the technology of the FACOM 230-75 APU, with the aim of achieving even higher performance, ease-of-use and affinity with the FACOM M Series of general-purpose computers.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 16
+              - column:
+                  name: name
+                  value: CRAY-1
+              - column:
+                  name: description
+                  value: Cray-1 — легендарный суперкомпьютер, спроектированный Сеймуром Крэем и созданный компанией Cray Research Inc. в 1976 году. Пиковая производительность машины — 133 Мфлопса. Cray-1 — это первый суперкомпьютер компании Cray Research, основанной «отцом суперкомпьютеров» Сеймуром Крэем после его ухода из компании CDC. Cray-1 — легендарный суперкомпьютер, спроектированный Сеймуром Крэем и созданный компанией Cray Research Inc. в 1976 году. Пиковая производительность машины — 133 Мфлопса. Cray-1 — это первый суперкомпьютер компании Cray Research, основанной «отцом суперкомпьютеров» Сеймуром Крэем после его ухода из компании CDC.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 17
+              - column:
+                  name: name
+                  value: ILLIAC IV
+              - column:
+                  name: description
+                  value: he ILLIAC IV was the first massively parallel computer. The system was originally designed to have 256 64-bit floating point units (FPUs) and four central processing units (CPUs) able to process 1 billion operations per second. Due to budget constraints, only a single "quadrant" with 64 FPUs and a single CPU was built. Since the FPUs all had to process the same instruction – ADD, SUB etc. – in modern terminology the design would be considered to be single instruction, multiple data, or SIMD.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 18
+              - column:
+                  name: name
+                  value: PEPE
+              - column:
+                  name: description
+                  value: The Parallel Element Processing Ensemble (PEPE) was one of the very early parallel computing systems. Bell began researching the concept in the mid-1960s as a way to provide high-performance computing support for the needs of anti-ballistic missile (ABM) systems. The goal was to build a computer system that could simultaneously track hundreds of incoming ballistic missile warheads. A single PEPE system was built by Burroughs Corporation in the 1970s, by which time the US Army's ABM efforts were winding down. The design later evolved into the Burroughs Scientific Computer for commercial sales, but a lack of sales prospects led to it being withdrawn from the market.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 19
+              - column:
+                  name: name
+                  value: BSP
+              - column:
+                  name: description
+                  value: The BSP model was developed by Leslie Valiant of Harvard University during the 1980s. The definitive article was published in 1990. Between 1990 and 1992, Leslie Valiant and Bill McColl of Oxford University worked on ideas for a distributed memory BSP programming model, in Princeton and at Harvard. Between 1992 and 1997, McColl led a large research team at Oxford that developed various BSP programming libraries, languages and tools, and also numerous massively parallel BSP algorithms. With interest and momentum growing, McColl then led a group from Oxford, Harvard, Florida, Princeton, Bell Labs, Columbia and Utrecht that developed and published the BSPlib Standard for BSP programming in 1996. Valiant developed an extension to the BSP model in the 2000s, leading to the publication of the Multi-BSP model in 2011. In 2017, McColl developed a major new extension of the BSP model that provides fault tolerance and tail tolerance for large-scale parallel computations in AI, Analytics and HPC
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 20
+              - column:
+                  name: name
+                  value: STARAN
+              - column:
+                  name: description
+                  value: STARAN might be the first commercially available computer designed around an associative memory. The STARAN computer was designed and built by Goodyear Aerospace Corporation. It is a Content Addressable Parallel Processor (CAPP), a type of parallel processor which uses content addressable memory. STARAN is a single instruction, multiple data array processor with a 4x256 1-bit processing element (PE) computer. The STARAN machines became available in 1972. Goodyear Aerospace later developed the MPP based on similar principles but with a larger and wider processor array.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 21
+              - column:
+                  name: name
+                  value: ICL DAP
+              - column:
+                  name: description
+                  value: The Distributed Array Processor (DAP) produced by International Computers Limited (ICL) was the world's first commercial massively parallel computer. The original paper study was complete in 1972 and building of the prototype began in 1974. The first machine was delivered to Queen Mary College in 1979.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 22
+              - column:
+                  name: name
+                  value: Cosmic Cube
+              - column:
+                  name: description
+                  value: The Caltech Cosmic Cube was a parallel computer, developed by Charles Seitz and Geoffrey C Fox from 1981 onward. It was the first working hypercube built. It was an early attempt to capitalise on VLSI to speed up scientific calculations at a reasonable cost. Using commodity hardware and an architecture suited to the specific task (QCD), Fox and Seitz demonstrated that this was indeed possible. In 1984 a group at Intel including Justin Rattner and Cleve Moler developed the Intel iPSC inspired by the Cosmic Cube. In 1987 several people in the group formed a company called Parasoft to commercialize the message passing interface developed for the Cosmic Cube.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 23
+              - column:
+                  name: name
+                  value: C.mmp
+              - column:
+                  name: description
+                  value: The C.mmp was an early multiple instruction, multiple data (MIMD) multiprocessor system developed at Carnegie Mellon University (CMU) by William Wulf (1971). The notation C.mmp came from the PMS notation of Gordon Bell and Allen Newell, where a central processing unit (CPU) was designated as C, a variant was noted by the dot notation, and mmp stood for Multi-Mini-Processor. As of 2020, the machine is on display at CMU, in Wean Hall, on the floor nine.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 24
+              - column:
+                  name: name
+                  value: BBN Butterfly
+              - column:
+                  name: description
+                  value: BBN Butterfly — параллельный суперкомпьютер, построенный компанией Bolt, Beranek and Newman (англ.)русск. в 1980-х годах. Название Butterfly (с англ. «бабочка») он получил из-за использованной топологии сетевого соединения butterfly switch между узлами компьютера. Число процессоров в BBN Butterfly могло достигать 512.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 25
+              - column:
+                  name: name
+                  value: CRAY Y-MP
+              - column:
+                  name: description
+                  value: Cray Y-MP — параллельный векторный многопроцессорный суперкомпьютер (PVP/SMP) производства компании Cray Research, созданный в 1988 году как преемник предыдущей модели — X-MP. Большой вклад в разработку Y-MP внес ведущий инженер компании Cray Research Стив Чен до своего ухода из компании в сентябре 1987 года.
+        - insert:
+            tableName: cs_entity
+            columns:
+              - column:
+                  name: id
+                  value: 26
+              - column:
+                  name: name
+                  value: Denelcor HEP
+              - column:
+                  name: description
+                  value: The Heterogeneous Element Processor (HEP) was introduced by Denelcor, Inc. in 1982. The HEP's architect was Burton Smith. The machine was designed to solve fluid dynamics problems for the Ballistic Research Laboratory.[1] A HEP system, as the name implies, was pieced together from many heterogeneous components -- processors, data memory modules, and I/O modules. The components were connected via a switched network. A single processor, called a PEM, in a HEP system (up to sixteen PEMs could be connected) was rather unconventional; via a "program status word (PSW) queue," up to fifty processes could be maintained in hardware at once. The largest system ever delivered had 4 PEMs. The eight-stage instruction pipeline allowed instructions from eight different processes to proceed at once. In fact, only one instruction from a given process was allowed to be present in the pipeline at any point in time. Therefore, the full processor throughput of 10 MIPS could only be achieved when eight or more processes were active; no single process could achieve throughput greater than 1.25 MIPS. This type of multithreading processing classifies the HEP as a barrel processor. The hardware implementation of the HEP PEM was emitter-coupled logic.
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#        - insert:
+#            tableName: cs_entity
+#            columns:
+#              - column:
+#                  name: id
+#                  value:
+#              - column:
+#                  name: name
+#                  value:
+#              - column:
+#                  name: description
+#                  value:
+#

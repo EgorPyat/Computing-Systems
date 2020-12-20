@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CsRepository extends JpaRepository<CsEntity, Long> {
 
-    List<CsEntity> findAllByParentIdIsNull();
+    List<CsEntity> findAllByParentsIsNull();
 }
