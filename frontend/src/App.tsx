@@ -6,18 +6,31 @@ import {CsEntityDto, CsEntityHierarchyDto} from "./api/computing-systems";
 function App() {
     const [data, setData] = useState<CsEntityHierarchyDto>();
     const [content, setContent] = useState<CsEntityDto>();
+    const [search, setSearch] = useState<string>('');
+    const [searchResult, setSearchResult] = useState<CsEntityDto[]>();
 
     useEffect(() => {
         Api.getCsEntityHierarchy().then(response => setData(response.data));
     }, [])
 
     const handleEntityClick = (entity: CsEntityDto | undefined) => {
-        console.log(entity)
+        setSearchResult(undefined);
+        if (search) {
+            setSearch('');
+        }
         setContent(entity);
     };
 
     const handleInput = (e) => {
-
+        setSearch(e.nativeEvent.target.value)
+        const keyword: string = e.nativeEvent.target.value.toLowerCase();
+        if (!keyword) {
+            setSearchResult(undefined);
+        } else {
+            // @ts-ignore
+            const result = Object.values(data?.entities).filter(e => (e.name.toLowerCase().includes(keyword) || e.description.toLowerCase().includes(keyword)));
+            setSearchResult(result);
+        }
     };
 
     const renderHierarchy = (rootEntities: (CsEntityDto | undefined)[] | undefined) => {
@@ -62,14 +75,16 @@ function App() {
             </div>}
         </div>
       </div>
-      <div className="aside">
-        <div className="search">
-          Поиск:
-          <input type="text" name="name" onChange={handleInput}/>
+        <div className="aside">
+            <div className="search">
+                Поиск:
+                <input type="text" name="name" onChange={handleInput} value={search}/>
+            </div>
+            {!searchResult && renderHierarchy(data?.rootEntities.map(e => data?.entities[e]))}
+            {searchResult && <ul>{searchResult.map(r => <li className="list-item" onClick={() => handleEntityClick(r)}
+                                                            key={r.id}>{r.name}</li>)}</ul>}
         </div>
-          {renderHierarchy(data?.rootEntities.map(e => data?.entities[e]))}
-      </div>
-      <div className="footer">Пятаев Егор Евгеньевич, 19223. Вычислительные системы, 2020</div>
+        <div className="footer">Пятаев Егор Евгеньевич, 19223. Вычислительные системы, 2020</div>
     </div>
   );
 }
