@@ -21,6 +21,7 @@ function App() {
         setContent(entity);
     };
 
+    // @ts-ignore
     const handleInput = (e) => {
         setSearch(e.nativeEvent.target.value)
         const keyword: string = e.nativeEvent.target.value.toLowerCase();
