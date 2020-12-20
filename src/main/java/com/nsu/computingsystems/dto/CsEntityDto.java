@@ -7,12 +7,18 @@ public class CsEntityDto {
     public Long id;
     public String name;
     public String description;
-    public List<CsEntityDto> descendants;
+    public List<Long> parents;
+    public List<Long> descendants;
 
-    public CsEntityDto(final Long id, final String name, final String description, final List<CsEntityDto> descendants) {
+    public CsEntityDto(final Long id,
+                       final String name,
+                       final String description,
+                       final List<Long> parents,
+                       final List<Long> descendants) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.parents = parents;
         this.descendants = descendants;
     }
 }

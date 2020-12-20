@@ -56,4 +56,12 @@ public class CsEntity {
     public void setDescendants(List<CsEntity> descendants) {
         this.descendants = descendants;
     }
+
+    public List<CsEntity> getParents() {
+        return parents;
+    }
+
+    public void setParents(List<CsEntity> parents) {
+        this.parents = parents;
+    }
 }

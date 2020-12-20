@@ -1,11 +1,18 @@
 /* tslint:disable */
+
 /* eslint-disable */
 
 export interface CsEntityDto {
     id: number;
     name: string;
     description: string;
-    descendants: CsEntityDto[];
+    parents: number[];
+    descendants: number[];
+}
+
+export interface CsEntityHierarchyDto {
+    rootEntities: number[];
+    entities: { [index: string]: CsEntityDto };
 }
 
 export interface HttpClient<O> {
@@ -22,8 +29,8 @@ export class RestApplicationClient<O> {
      * HTTP GET /cs/all
      * Java method: com.nsu.computingsystems.controller.ComputerSystemsController.getCsEntityHierarchy
      */
-    getCsEntityHierarchy(options?: O): RestResponse<CsEntityDto[]> {
-        return this.httpClient.request({ method: "GET", url: uriEncoding`cs/all`, options: options });
+    getCsEntityHierarchy(options?: O): RestResponse<CsEntityHierarchyDto> {
+        return this.httpClient.request({method: "GET", url: uriEncoding`cs/all`, options: options});
     }
 }
 
@@ -42,8 +49,7 @@ function uriEncoding(template: TemplateStringsArray, ...substitutions: any[]): s
 
 // Added by 'AxiosClientExtension' extension
 
-import axios from "axios";
-import * as Axios from "axios";
+import axios, * as Axios from "axios";
 
 declare module "axios" {
     export interface GenericAxiosResponse<R> extends Axios.AxiosResponse {
